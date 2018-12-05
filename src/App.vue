@@ -1,17 +1,27 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <HelloWorld/>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld'
+const axios = require('axios')
 
 export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+
+  mounted () {
+    const request = axios.create({
+      baseURL: 'https://api.github.com'
+    })
+    request.get('/users/MasqueradeU')
+      .then(res => {
+        console.log(res.data)
+      })
   }
 }
 </script>
