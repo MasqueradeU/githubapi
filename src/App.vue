@@ -16,9 +16,11 @@ export default {
 
   mounted () {
     const request = axios.create({
-      baseURL: 'https://api.github.com'
+      baseURL: 'https://api.github.com/',
+      'Authorization': `${process.env.ACCESS_TOKEN}`,
+      responseType: 'json'
     })
-    request.get('/users/MasqueradeU')
+    request.get('/users/MasqueradeU/repos')
       .then(res => {
         console.log(res.data)
       })
